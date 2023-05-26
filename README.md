@@ -1,7 +1,52 @@
-# Vue 3 + Vite
+Certamente! Aqui está um exemplo de arquivo README para o seu projeto em Vue.js:
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+# Simulador de Notas em Vue.js
 
-## Recommended IDE Setup
+Este é um simulador de notas desenvolvido em Vue.js com o objetivo de treinar os conhecimentos nessa tecnologia. A aplicação permite calcular a média aritmética e a média ponderada de um aluno, com opções de pesos para as notas.
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Funcionalidades
+
+- Cálculo da média aritmética com inserção de notas.
+- Cálculo da média ponderada com inserção de notas e pesos.
+- Verificação se o aluno está aprovado ou reprovado.
+- Limpeza dos dados inseridos.
+- Interface responsiva utilizando Bootstrap.
+
+## Tecnologias Utilizadas
+
+- Vue.js
+- Bootstrap
+
+## Como Executar o Projeto
+
+1. Certifique-se de ter o Node.js instalado em seu sistema.
+2. Faça o clone deste repositório para sua máquina local.
+3. No terminal, navegue até o diretório raiz do projeto.
+4. Execute o comando `npm install` para instalar as dependências.
+5. Após a instalação, execute o comando `npm run serve` para iniciar o servidor de desenvolvimento.
+6. Acesse a aplicação no navegador utilizando o seguinte endereço: `http://localhost:8080`.
+
+## Como Utilizar a Aplicação
+
+1. Ao acessar a aplicação, você verá a página inicial do simulador de notas.
+2. Para iniciar, clique no botão "Inserir nome" e digite o nome do aluno.
+3. Em seguida, utilize o botão "Colher notas" para inserir as notas do aluno uma por vez. Digite cada nota e pressione "Enter" para confirmar.
+4. Após inserir todas as notas, clique no botão "Calcular média" para calcular a média aritmética das notas.
+5. Será exibida a média calculada na seção "Média".
+6. Utilize o botão "Aprovado?" para verificar se o aluno está aprovado ou reprovado com base na média calculada.
+7. Caso queira recomeçar e inserir novos dados, utilize o botão "Limpar tudo" para reiniciar o processo.
+8. Aproveite o simulador de notas em Vue.js!
+
+## Contribuição
+
+Contribuições são bem-vindas! Se você encontrar algum problema, tiver sugestões ou melhorias, sinta-se à vontade para abrir uma issue ou enviar um pull request.
+
+## Licença
+
+Este projeto está licenciado sob a [MIT License](LICENSE).
+
+---
+
+Lembre-se de substituir as informações relevantes, como o nome do projeto, descrição, tecnologias utilizadas e instruções de execução, de acordo com o seu projeto específico.
+
+Espero que este README seja útil para você! Se tiver mais dúvidas, é só me avisar.
