@@ -1,5 +1,3 @@
-Certamente! Aqui está um exemplo de arquivo README para o seu projeto em Vue.js:
-
 # Simulador de Notas em Vue.js
 
 Este é um simulador de notas desenvolvido em Vue.js com o objetivo de treinar os conhecimentos nessa tecnologia. A aplicação permite calcular a média aritmética e a média ponderada de um aluno, com opções de pesos para as notas.
