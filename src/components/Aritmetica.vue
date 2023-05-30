@@ -35,10 +35,10 @@ export default {
     },
 
     colherNotas() {
-      let nota = parseFloat(prompt('Insira a nota (ou digite "parar" para encerrar a coleta de notas):'))
+      let nota = parseFloat(prompt('Insira a nota (ou digite "stop" para encerrar a coleta de notas):'))
       while (!isNaN(nota)) {
         this.notas.push(nota)
-        nota = parseFloat(prompt('Insira a próxima nota (ou digite "parar" para encerrar a coleta de notas):'))
+        nota = parseFloat(prompt('Insira a próxima nota (ou digite "stop" para encerrar a coleta de notas):'))
       }
     },
 
