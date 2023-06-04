@@ -1,17 +1,16 @@
 <template>
-  <div>
+  <div class="container">
     <h1>Média Aritmética</h1>
     <p>Insira as notas para calcular a média aritmética.</p>
     <p>Nome do aluno: {{ name }}</p>
-    <p>Notas: {{ notas.join(' ,') }}</p>
+    <p>Notas: {{ notas.join(', ') }}</p>
     <p>Média: {{ media }}</p>
 
-    <div>
-      <button @click="inserirName">Inserir nome</button>
-      <button @click="colherNotas">Colher notas</button>
-      <button @click="calcularMedia">Calcular média</button>
-      <button @click="isAprovado">Aprovado?</button>
-      <button @click="clearAll">Limpar tudo</button>
+    <div class="d-flex justify-content-center mt-4">
+      <button @click="inserirName" class="btn btn-primary mx-2">Inserir nome</button>
+      <button @click="colherNotas" class="btn btn-primary mx-2">Colher notas</button>
+      <button @click="calcularMedia" class="btn btn-primary mx-2">Calcular média</button>
+      <button @click="clearAll" class="btn btn-danger mx-2">Limpar tudo</button>
     </div>
   </div>
 </template>
@@ -29,7 +28,6 @@ export default {
   },
 
   methods: {
-
     inserirName() {
       this.name = prompt('Insira o nome do aluno')
     },
@@ -49,15 +47,19 @@ export default {
       }
       this.media = soma / this.notas.length
 
-      alert('A média de ' + this.name + ' é: ' + this.media.toFixed(2))
+      alert('A média de ' + this.name + ' é: ' + this.media.toFixed(2));
+
+      setTimeout(() => {
+        this.isAprovado();
+      }, 500);
     },
 
     isAprovado() {
       setTimeout(() => {
         if (this.media >= 6) {
-          alert(this.name + ' foi ' + ' aprovado!')
+          alert(this.name + ' foi aprovado!')
         } else {
-          alert(this.name + ' foi' + ' reprovado!')
+          alert(this.name + ' foi reprovado!')
         }
       }, 1000)
     },
@@ -70,17 +72,3 @@ export default {
   },
 }
 </script>
-<style>
-button{
-  
-    background-color:#008CBA;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-
-}
-</style>

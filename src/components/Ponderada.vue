@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <h1>Média ponderada</h1>
         <p>Insira as notas e os pesos das notas para calcular a média ponderada.</p>
         <p>Nome do aluno: {{ name }}</p>
@@ -7,13 +7,12 @@
         <p>Notas: {{ notas.join(', ') }}</p>
         <p>Média: {{ media }}</p>
 
-        <div>
-            <button @click="colherName">Inserir nome</button>
-            <button @click="colherPesos">Colher pesos</button>
-            <button @click="colherNotas">Colher notas</button>
-            <button @click="calcularMedia">Calcular média</button>
-            <button @click="isAprovado">Aprovado?</button>
-            <button @click="clearAll">Limpar tudo</button>
+        <div class="d-flex justify-content-center mt-4">
+            <button @click="colherName" class="btn btn-primary mx-2">Inserir nome</button>
+            <button @click="colherPesos" class="btn btn-primary mx-2">Colher pesos</button>
+            <button @click="colherNotas" class="btn btn-primary mx-2">Colher notas</button>
+            <button @click="calcularMedia" class="btn btn-primary mx-2">Calcular média</button>
+            <button @click="clearAll" class="btn btn-danger mx-2">Limpar tudo</button>
         </div>
     </div>
 </template>
@@ -42,8 +41,11 @@ export default {
             }
         },
         colherPesos() {
-            let peso = parseFloat(prompt('Insira o peso da nota: ' + (this.pesos.length + 1)))
-            this.pesos.push(peso)
+            let peso = parseFloat(prompt('Insira a pesos (ou digite "stop" para encerrar a coleta de pesos):'))
+            while (!isNaN(peso)) {
+                this.pesos.push(peso)
+                peso = parseFloat(prompt('Insira o peso da nota: (ou digite "stop" para encerrar a coleta de pesos)'))
+            }
         },
         calcularMedia() {
             let soma = 0
@@ -55,6 +57,10 @@ export default {
             this.media = soma / somaPesos
 
             alert('A média de ' + this.name + ' é: ' + this.media.toFixed(2))
+
+            setTimeout(() => {
+                this.isAprovado();
+            }, 500)
         },
         isAprovado() {
             setTimeout(() => {
@@ -77,15 +83,38 @@ export default {
 </script>
   
 <style>
-button {
-
-    background-color: #008CBA;
-    border: none;
-    color: white;
-    padding: 15px 32px;
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
     text-align: center;
+}
+
+.btn {
     font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #008CBA;
+    border-color: #008CBA;
+}
+
+.btn-primary:hover {
+    background-color: #007199;
+    border-color: #007199;
+}
+
+.btn-danger {
+    background-color: #DC3545;
+    border-color: #DC3545;
+}
+
+.btn-danger:hover {
+    background-color: #B52E3D;
+    border-color: #B52E3D;
+}
+
+p {
+    margin: 10px 0;
 }
 </style>
