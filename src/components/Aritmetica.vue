@@ -2,14 +2,14 @@
   <div class="container">
     <h1>Média Aritmética</h1>
     <p>Insira as notas para calcular a média aritmética.</p>
-    <p>Nome do aluno: {{ name }}</p>
     <p>Matéria: {{ materia }}</p>
+    <p>Nome do aluno: {{ name }}</p>
     <p>Notas: {{ notas.join(', ') }}</p>
     <p>Média: {{ media }}</p>
 
     <div class="d-flex justify-content-center mt-4">
-      <button @click="inserirName" class="btn btn-primary mx-2">Inserir nome</button>
       <button @click="inserirMateria" class="btn btn-primary mx-2">Inserir matéria</button>
+      <button @click="inserirName" class="btn btn-primary mx-2">Inserir nome</button>
       <button @click="colherNotas" class="btn btn-primary mx-2">Colher notas</button>
       <button @click="calcularMedia" class="btn btn-primary mx-2">Calcular média</button>
       <button @click="clearAll" class="btn btn-danger mx-2">Limpar tudo</button>

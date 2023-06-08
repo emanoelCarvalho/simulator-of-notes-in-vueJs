@@ -2,6 +2,7 @@
     <div class="container">
         <h1>Média ponderada</h1>
         <p>Insira as notas e os pesos das notas para calcular a média ponderada.</p>
+        <p>Matéria: {{ materia }}</p>
         <p>Nome do aluno: {{ name }}</p>
         <p>Pesos: {{ pesos.join(', ') }}</p>
         <p>Notas: {{ notas.join(', ') }}</p>
@@ -25,11 +26,16 @@ export default {
         return {
             notas: [],
             pesos: [],
-            media: 0,
-            name: ''
+            media: '',
+            name: '',
+            materia: ''
         }
     },
     methods: {
+
+        inserirMaterial() {
+            this.materia = prompt('Insira a matéria')
+        },
         colherName() {
             this.name = prompt('Insira o nome do aluno')
         },
@@ -75,9 +81,11 @@ export default {
         clearAll() {
             this.notas = []
             this.pesos = []
-            this.media = 0
+            this.media = ''
             this.name = ''
+            this.materia = ''
         }
+
     }
 }
 </script>
