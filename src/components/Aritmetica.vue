@@ -24,9 +24,11 @@ export default {
   data() {
     return {
       notas: [],
-      media: 0,
+      media: '',
       name: '',
       materia: '',
+      max: 10,
+      min: 0,
     }
   },
 
@@ -41,6 +43,11 @@ export default {
 
     colherNotas() {
       let nota = parseFloat(prompt('Insira a nota (ou digite "stop" para encerrar a coleta de notas):'))
+      if(nota > this.max || nota < this.min) {
+        alert('Nota inválida, coloque uma nota entre ' + this.min + ' e ' + this.max + '!')
+        nota = parseFloat(prompt('Insira a próxima nota (ou digite "stop" para encerrar a coleta de notas):'))
+        
+      }
       while (!isNaN(nota)) {
         this.notas.push(nota)
         nota = parseFloat(prompt('Insira a próxima nota (ou digite "stop" para encerrar a coleta de notas):'))
@@ -54,7 +61,7 @@ export default {
       }
       this.media = soma / this.notas.length
 
-      alert('A média de ' + this.name + ' é: ' + this.media.toFixed(2));
+      alert('A média de ' + this.name + ' é: ' + this.media.toFixed(2)  );
 
       setTimeout(() => {
         this.isAprovado();
@@ -73,9 +80,46 @@ export default {
 
     clearAll() {
       this.notas = []
-      this.media = 0
+      this.media = ''
       this.name = ''
     }
   },
 }
 </script>
+
+<style>
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.btn {
+  font-size: 16px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0069d9;
+  border-color: #0069d9;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #c82333;
+}
+
+p {
+  margin: 10px 0;
+}
+</style>

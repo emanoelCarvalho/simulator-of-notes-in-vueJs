@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <h1>Média ponderada</h1>
-        <p>Insira as notas e os pesos das notas para calcular a média ponderada.</p>
+        <p>Por favor, insira, o nome da matéria, seu nome, as notas e pesos, para podermos calcular</p>
         <p>Matéria: {{ materia }}</p>
         <p>Nome do aluno: {{ name }}</p>
         <p>Pesos: {{ pesos.join(', ') }}</p>
@@ -9,6 +9,7 @@
         <p>Média: {{ media }}</p>
 
         <div class="d-flex justify-content-center mt-4">
+            <button @click="inserirMaterial" class="btn btn-primary mx-2">Inserir matéria</button>
             <button @click="colherName" class="btn btn-primary mx-2">Inserir nome</button>
             <button @click="colherPesos" class="btn btn-primary mx-2">Colher pesos</button>
             <button @click="colherNotas" class="btn btn-primary mx-2">Colher notas</button>
@@ -28,7 +29,11 @@ export default {
             pesos: [],
             media: '',
             name: '',
-            materia: ''
+            materia: '',
+            max: 10,
+            min: 0,
+            maxPesos: 4,
+            minPesos: 1
         }
     },
     methods: {
@@ -41,18 +46,28 @@ export default {
         },
         colherNotas() {
             let nota = parseFloat(prompt('Insira a nota (ou digite "stop" para encerrar a coleta de notas):'))
+            if (nota > this.max || nota < this.min) {
+                alert('Nota inválida, coloque uma nota entre ' + this.min + ' e ' + this.max + '!')
+                nota = parseFloat(prompt('Insira a próxima nota (ou digite "stop" para encerrar a coleta de notas):'))
+            }
             while (!isNaN(nota)) {
                 this.notas.push(nota)
                 nota = parseFloat(prompt('Insira a próxima nota (ou digite "stop" para encerrar a coleta de notas):'))
             }
         },
+
         colherPesos() {
             let peso = parseFloat(prompt('Insira a pesos (ou digite "stop" para encerrar a coleta de pesos):'))
+            if (peso > this.maxPesos || peso < this.minPesos) {
+                alert('Peso inválido, digite um valor entre ' + this.minPesos + ' e ' + this.maxPesos + '!')
+                peso = parseFloat(prompt('Insira o peso da nota: (ou digite "stop" para encerrar a coleta de pesos)'))
+            }
             while (!isNaN(peso)) {
                 this.pesos.push(peso)
                 peso = parseFloat(prompt('Insira o peso da nota: (ou digite "stop" para encerrar a coleta de pesos)'))
             }
         },
+
         calcularMedia() {
             let soma = 0
             let somaPesos = 0
