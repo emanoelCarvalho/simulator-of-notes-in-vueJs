@@ -27,8 +27,6 @@ export default {
       media: '',
       name: '',
       materia: '',
-      max: 10,
-      min: 0,
     }
   },
 
