@@ -1,21 +1,34 @@
 <template>
     <div class="container">
         <h1>Média ponderada</h1>
-        <p>Por favor, insira, o nome da matéria, seu nome, as notas e pesos, para podermos calcular</p>
-        <p>Matéria: {{ materia }}</p>
-        <p>Nome do aluno: {{ name }}</p>
-        <p>Pesos: {{ pesos.join(', ') }}</p>
-        <p>Notas: {{ notas.join(', ') }}</p>
-        <p>Média: {{ media }}</p>
+        <p>Preencha os campos abaixo, para podermos realizar as operações</p>
+
+        <div class="form-group">
+            <label for="name">Nome do Aluno</label>
+            <input type="text" class="form-control" id="name" v-model="name" />
+        </div>
+
+        <div class="form-group">
+            <label for="materia">Matéria</label>
+            <input type="text" class="form-control" id="materia" v-model="materia" />
+        </div>
+
+        <div class="form-group">
+            <label for="pesos">Pesos</label>
+            <textarea name="pesos" v-model="pesos" id="pesos" class="form-control"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="notas">Notas</label>
+            <textarea name="notas" v-model="notas" id="notas" class="form-control"></textarea>
+        </div>
 
         <div class="d-flex justify-content-center mt-4">
-            <button @click="inserirMaterial" class="btn btn-primary mx-2">Inserir matéria</button>
-            <button @click="colherName" class="btn btn-primary mx-2">Inserir nome</button>
-            <button @click="colherPesos" class="btn btn-primary mx-2">Colher pesos</button>
-            <button @click="colherNotas" class="btn btn-primary mx-2">Colher notas</button>
             <button @click="calcularMedia" class="btn btn-primary mx-2">Calcular média</button>
             <button @click="clearAll" class="btn btn-danger mx-2">Limpar tudo</button>
         </div>
+
+        
     </div>
 </template>
   

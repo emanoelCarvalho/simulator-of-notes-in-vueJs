@@ -1,16 +1,21 @@
 <template>
   <div class="container">
     <h1>Média Aritmética</h1>
-    <p>Insira as notas para calcular a média aritmética.</p>
-    <p>Matéria: {{ materia }}</p>
-    <p>Nome do aluno: {{ name }}</p>
-    <p>Notas: {{ notas.join(', ') }}</p>
-    <p>Média: {{ media }}</p>
+    <p>Preencha os campos abaixo, para podermos realizar as operações</p>
 
+    <div class="form-group">
+      <label for="name">Nome do Aluno</label>
+      <input type="text" class="form-control" id="name" v-model="name" />
+    </div>
+    <div class="form-group">
+      <label for="materia">Matéria</label>
+      <input type="text" class="form-control" id="materia" v-model="materia" />
+    </div>
+    <div class="form-group">
+      <label for="notas">Notas</label>
+      <textarea name="notas" v-model="notas" id="notas" class="form-control"></textarea>
+    </div>
     <div class="d-flex justify-content-center mt-4">
-      <button @click="inserirMateria" class="btn btn-primary mx-2">Inserir matéria</button>
-      <button @click="inserirName" class="btn btn-primary mx-2">Inserir nome</button>
-      <button @click="colherNotas" class="btn btn-primary mx-2">Colher notas</button>
       <button @click="calcularMedia" class="btn btn-primary mx-2">Calcular média</button>
       <button @click="clearAll" class="btn btn-danger mx-2">Limpar tudo</button>
     </div>
@@ -31,55 +36,30 @@ export default {
   },
 
   methods: {
-    inserirName() {
-      this.name = prompt('Insira o nome do aluno')
-    },
-
-    inserirMateria() {
-      this.materia = prompt('Insira a matéria')
-    },
-
-    colherNotas() {
-      let nota = parseFloat(prompt('Insira a nota (ou digite "stop" para encerrar a coleta de notas):'))
-      if(nota > this.max || nota < this.min) {
-        alert('Nota inválida, coloque uma nota entre ' + this.min + ' e ' + this.max + '!')
-        nota = parseFloat(prompt('Insira a próxima nota (ou digite "stop" para encerrar a coleta de notas):'))
-        
-      }
-      while (!isNaN(nota)) {
-        this.notas.push(nota)
-        nota = parseFloat(prompt('Insira a próxima nota (ou digite "stop" para encerrar a coleta de notas):'))
-      }
-    },
-
     calcularMedia() {
-      let soma = 0
-      for (let i = 0; i < this.notas.length; i++) {
-        soma += this.notas[i]
-      }
-      this.media = soma / this.notas.length
+      const notas = this.notas.split(',').map(nota => Number(nota))
+      const media = notas.reduce((acc, nota) => acc + nota, 0) / notas.length
 
-      alert('A média de ' + this.name + ' é: ' + this.media.toFixed(2)  );
+      this.media = media.toFixed(2)
+      alert('A média do aluno ' + this.name + ' na matéria ' + this.materia + ' é ' + this.media);
 
       setTimeout(() => {
-        this.isAprovado();
-      }, 500);
+        this.isAprovado()
+      }, 1000)
+
+
     },
 
     isAprovado() {
-      setTimeout(() => {
-        if (this.media >= 6) {
-          alert(this.name + ' foi aprovado!')
-        } else {
-          alert(this.name + ' foi reprovado!')
-        }
-      }, 1000)
+      this.media >= 6 ? alert('O aluno ' + this.name + ' foi ' + ' aprovado') : alert('O aluno ' + this.name + ' foi ' + ' reprovado')
     },
+
 
     clearAll() {
       this.notas = []
       this.media = ''
       this.name = ''
+      this.materia = ''
     }
   },
 }
