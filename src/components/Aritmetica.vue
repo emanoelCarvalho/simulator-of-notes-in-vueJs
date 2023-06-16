@@ -23,6 +23,7 @@
 </template>
   
 <script>
+
 export default {
   name: 'Aritmetica',
 
@@ -41,17 +42,16 @@ export default {
       const media = notas.reduce((acc, nota) => acc + nota, 0) / notas.length
 
       this.media = media.toFixed(2)
-      alert('A média do aluno ' + this.name + ' na matéria ' + this.materia + ' é ' + this.media);
-
+      swal(`A média  do aluno ${this.name} na matéria ${this.materia} é ${this.media}`)
       setTimeout(() => {
         this.isAprovado()
-      }, 1000)
+      }, 3000)
 
 
     },
 
     isAprovado() {
-      this.media >= 6 ? alert('O aluno ' + this.name + ' foi ' + ' aprovado') : alert('O aluno ' + this.name + ' foi ' + ' reprovado')
+      this.media >= 6 ? swal('Aprovado', '', 'success') : swal('Reprovado', '', 'error')
     },
 
 

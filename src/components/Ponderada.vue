@@ -27,12 +27,12 @@
             <button @click="calcularMedia" class="btn btn-primary mx-2">Calcular média</button>
             <button @click="clearAll" class="btn btn-danger mx-2">Limpar tudo</button>
         </div>
-
-        
     </div>
 </template>
   
 <script>
+import swal from 'sweetalert'
+
 export default {
     name: 'Ponderada',
 
@@ -43,77 +43,49 @@ export default {
             media: '',
             name: '',
             materia: '',
-            max: 10,
-            min: 0,
-            maxPesos: 4,
-            minPesos: 1
         }
     },
     methods: {
-
-        inserirMaterial() {
-            this.materia = prompt('Insira a matéria')
-        },
-        colherName() {
-            this.name = prompt('Insira o nome do aluno')
-        },
-        colherNotas() {
-            let nota = parseFloat(prompt('Insira a nota (ou digite "stop" para encerrar a coleta de notas):'))
-            if (nota > this.max || nota < this.min) {
-                alert('Nota inválida, coloque uma nota entre ' + this.min + ' e ' + this.max + '!')
-                nota = parseFloat(prompt('Insira a próxima nota (ou digite "stop" para encerrar a coleta de notas):'))
-            }
-            while (!isNaN(nota)) {
-                this.notas.push(nota)
-                nota = parseFloat(prompt('Insira a próxima nota (ou digite "stop" para encerrar a coleta de notas):'))
-            }
-        },
-
-        colherPesos() {
-            let peso = parseFloat(prompt('Insira a pesos (ou digite "stop" para encerrar a coleta de pesos):'))
-            if (peso > this.maxPesos || peso < this.minPesos) {
-                alert('Peso inválido, digite um valor entre ' + this.minPesos + ' e ' + this.maxPesos + '!')
-                peso = parseFloat(prompt('Insira o peso da nota: (ou digite "stop" para encerrar a coleta de pesos)'))
-            }
-            while (!isNaN(peso)) {
-                this.pesos.push(peso)
-                peso = parseFloat(prompt('Insira o peso da nota: (ou digite "stop" para encerrar a coleta de pesos)'))
-            }
-        },
-
         calcularMedia() {
-            let soma = 0
-            let somaPesos = 0
-            for (let i = 0; i < this.notas.length; i++) {
-                soma += this.notas[i] * this.pesos[i]
-                somaPesos += this.pesos[i]
+            if (this.notas.length === 0 || this.pesos.length === 0) {
+                swal('Atenção', 'Preencha todos os campos', 'warning')
+                return
             }
-            this.media = soma / somaPesos
 
-            alert('A média de ' + this.name + ' é: ' + this.media.toFixed(2))
+            const notas = this.notas.split(',')
+            const pesos = this.pesos.split(',')
+
+            if (notas.length !== pesos.length) {
+                swal('Atenção', 'A quantidade de notas e pesos devem ser iguais', 'warning')
+                return
+            }
+
+            let somaPesos = 0
+            let somaNotas = 0
+
+            for (let i = 0; i < notas.length; i++) {
+                somaPesos += parseFloat(pesos[i])
+                somaNotas += parseFloat(notas[i]) * parseFloat(pesos[i])
+            }
+
+            this.media = (somaNotas / somaPesos).toFixed(2)
+            swal(`A média  do aluno ${this.name} na matéria ${this.materia} é ${this.media}`)
 
             setTimeout(() => {
-                this.isAprovado();
-            }, 500)
-        },
-        isAprovado() {
-            setTimeout(() => {
-                if (this.media >= 6) {
-                    alert(this.name + ' foi aprovado!')
-                } else {
-                    alert(this.name + ' foi reprovado!')
-                }
-            }, 1000)
+                this.isAproved()
+            }, 3000)
         },
 
+        isAproved() {
+            this.media >= 6 ? swal('Aprovado', '', 'success') : swal('Reprovado', '', 'error')
+        },
         clearAll() {
             this.notas = []
             this.pesos = []
             this.media = ''
             this.name = ''
             this.materia = ''
-        }
-
+        },
     }
 }
 </script>
