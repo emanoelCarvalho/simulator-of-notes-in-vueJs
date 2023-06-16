@@ -44,7 +44,3 @@ Contribuições são bem-vindas! Se você encontrar algum problema, tiver sugest
 Este projeto está licenciado sob a [MIT License](LICENSE).
 
 ---
-
-Lembre-se de substituir as informações relevantes, como o nome do projeto, descrição, tecnologias utilizadas e instruções de execução, de acordo com o seu projeto específico.
-
-Espero que este README seja útil para você! Se tiver mais dúvidas, é só me avisar.
