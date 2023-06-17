@@ -1,4 +1,4 @@
-<template>
+<template id="menu">
   <div class="container">
     <h1 class="text-center">Simulator Notes</h1>
     <div class="text-center">
@@ -33,6 +33,7 @@ export default {
   methods: {
     showAritmetica() {
       this.selectedOption = 'aritmetica';
+      menu.style.visibility = 'hidden';
     },
     showPonderada() {
       this.selectedOption = 'ponderada';

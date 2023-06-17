@@ -2,6 +2,9 @@
     <div class="container">
         <h1>Média ponderada</h1>
         <p>Preencha os campos abaixo, para podermos realizar as operações</p>
+        <p>Ao colocar as notas no seu respectivo campo, adicione vírgula ao colocar cada nota,
+            para que possamos separar as notas, e assim calcular a média ponderada, o mesmo vale para os pesos.
+        </p>
 
         <div class="form-group">
             <label for="name">Nome do Aluno</label>
@@ -29,7 +32,7 @@
         </div>
     </div>
 </template>
-  
+    
 <script>
 import swal from 'sweetalert'
 
@@ -38,62 +41,64 @@ export default {
 
     data() {
         return {
-            notas: [],
-            pesos: [],
+            notas: '',
+            pesos: '',
             media: '',
             name: '',
             materia: '',
         }
     },
+
     methods: {
         calcularMedia() {
-            if (this.notas.length === 0 || this.pesos.length === 0) {
+            if (
+                this.notas.length === 0 ||
+                this.pesos.length === 0
+            ) {
                 swal('Atenção', 'Preencha todos os campos', 'warning')
                 return
             }
 
-            const notas = this.notas.split(',')
-            const pesos = this.pesos.split(',')
+            const notas = this.notas.split(',').map(nota => parseFloat(nota))
+            const pesos = this.pesos.split(',').map(peso => parseFloat(peso))
 
             if (notas.length !== pesos.length) {
-                swal('Atenção', 'A quantidade de notas e pesos devem ser iguais', 'warning')
+                swal('Atenção', 'A quantidade de notas e pesos deve ser igual', 'warning')
                 return
             }
 
-            let somaPesos = 0
-            let somaNotas = 0
-
-            for (let i = 0; i < notas.length; i++) {
-                somaPesos += parseFloat(pesos[i])
-                somaNotas += parseFloat(notas[i]) * parseFloat(pesos[i])
-            }
+            const somaNotas = notas.reduce((acc, nota, index) => acc + nota * pesos[index], 0)
+            const somaPesos = pesos.reduce((acc, peso) => acc + peso, 0)
 
             this.media = (somaNotas / somaPesos).toFixed(2)
-            swal(`A média  do aluno ${this.name} na matéria ${this.materia} é ${this.media}`)
 
+            swal(`A média do aluno ${this.name} na matéria ${this.materia} é ${this.media}`)
             setTimeout(() => {
-                this.isAproved()
+                this.isAprovado()
             }, 3000)
         },
 
-        isAproved() {
-            this.media >= 6 ? swal('Aprovado', '', 'success') : swal('Reprovado', '', 'error')
+        isAprovado() {
+            this.media >= 6
+                ? swal('Aprovado', '', 'success')
+                : swal('Reprovado', '', 'error')
         },
+
         clearAll() {
-            this.notas = []
-            this.pesos = []
+            this.notas = ''
+            this.pesos = ''
             this.media = ''
             this.name = ''
             this.materia = ''
-        },
+        }
     }
 }
 </script>
-  
+    
 <style>
 .container {
     max-width: 600px;
-    margin: 0 auto;
+    margin: 10px auto;
     padding: 20px;
     text-align: center;
 }
@@ -126,3 +131,4 @@ p {
     margin: 10px 0;
 }
 </style>
+  

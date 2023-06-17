@@ -2,6 +2,9 @@
   <div class="container">
     <h1>Média Aritmética</h1>
     <p>Preencha os campos abaixo, para podermos realizar as operações</p>
+    <p>Ao colocar as notas no seu respectivo campo, adicione vírgula ao colocar cada nota,
+      para que possamos separar as notas, e assim calcular a média aritmética
+    </p>
 
     <div class="form-group">
       <label for="name">Nome do Aluno</label>
@@ -10,6 +13,10 @@
     <div class="form-group">
       <label for="materia">Matéria</label>
       <input type="text" class="form-control" id="materia" v-model="materia" />
+    </div>
+    <div class="form-group">
+      <label for="media">Média da Instituição</label>
+      <input type="text" class="form-control" id="media" v-model="mediaDaInstituicao" />
     </div>
     <div class="form-group">
       <label for="notas">Notas</label>
@@ -31,6 +38,7 @@ export default {
     return {
       notas: [],
       media: '',
+      mediaDaInstituicao: '',
       name: '',
       materia: '',
     }
@@ -51,7 +59,7 @@ export default {
     },
 
     isAprovado() {
-      this.media >= 6 ? swal('Aprovado', '', 'success') : swal('Reprovado', '', 'error')
+      this.media >= this.mediaDaInstituicao ? swal('Aprovado', '', 'success') : swal('Reprovado', '', 'error')
     },
 
 
@@ -60,6 +68,7 @@ export default {
       this.media = ''
       this.name = ''
       this.materia = ''
+      this.mediaDaInstituicao = ''
     }
   },
 }
@@ -67,11 +76,13 @@ export default {
 
 <style>
 .container {
-  max-width: 600px;
+  max-width: 700px;
+  max-height: 700px;
   margin: 0 auto;
   padding: 20px;
   text-align: center;
 }
+
 
 .btn {
   font-size: 16px;
