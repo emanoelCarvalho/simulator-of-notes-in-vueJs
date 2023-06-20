@@ -37,7 +37,7 @@ export default {
   data() {
     return {
       notas: [],
-      media: '',
+      media: 0,
       mediaDaInstituicao: '',
       name: '',
       materia: '',
@@ -59,13 +59,15 @@ export default {
     },
 
     isAprovado() {
-      this.media >= this.mediaDaInstituicao ? swal('Aprovado', '', 'success') : swal('Reprovado', '', 'error')
+
+      const mediaDaInstituicao = parseFloat(this.mediaDaInstituicao);
+      this.media >= mediaDaInstituicao ? swal('Aprovado', '', 'success') : swal('Reprovado', '', 'error')
     },
 
 
     clearAll() {
       this.notas = []
-      this.media = ''
+      this.media = 0
       this.name = ''
       this.materia = ''
       this.mediaDaInstituicao = ''

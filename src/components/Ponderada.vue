@@ -87,7 +87,7 @@ export default {
         clearAll() {
             this.notas = ''
             this.pesos = ''
-            this.media = ''
+            this.media = 0
             this.name = ''
             this.materia = ''
         }
