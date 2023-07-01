@@ -33,7 +33,6 @@ export default {
   methods: {
     showAritmetica() {
       this.selectedOption = 'aritmetica';
-      menu.style.visibility = 'hidden';
     },
     showPonderada() {
       this.selectedOption = 'ponderada';
@@ -45,7 +44,6 @@ export default {
 <style scoped>
 .container {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #f1f1f1;
   padding: 20px;
   text-align: center;
 }

@@ -1,14 +1,14 @@
-import ref from 'vue'
+import { Ref} from "vue";
 
-let state = ref({
-    state : 'menu'
-})
+const state = {
+    Ref: "menu"
+}
 
-function setState(newState){
-    state .value = newState
+function changeState(newState) {
+    state.Ref = newState;
 }
 
 export default {
     state,
-    setState
+    changeState
 }
