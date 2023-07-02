@@ -49,6 +49,12 @@ export default {
 
   methods: {
     calcularMedia() {
+      if (
+        this.notas.length === 0
+      ) {
+        swal('Atenção', 'Preencha todos os campos', 'warning')
+        return
+      }
       const notas = this.notas.split(',').map(nota => Number(nota))
       const media = notas.reduce((acc, nota) => acc + nota, 0) / notas.length
 

@@ -2,8 +2,6 @@
     <div class="container">
       <h1>Média ponderada</h1>
       <p>Preencha os campos abaixo para realizar as operações</p>
-      <p>Ao colocar as notas no seu respectivo campo, adicione vírgula ao colocar cada nota para que possamos separá-las e calcular a média ponderada. O mesmo vale para os pesos.</p>
-  
       <div class="form-group">
         <label for="name">Nome do Aluno</label>
         <input type="text" class="form-control" id="name" v-model="name" />
@@ -12,6 +10,11 @@
       <div class="form-group">
         <label for="materia">Matéria</label>
         <input type="text" class="form-control" id="materia" v-model="materia" />
+      </div>
+
+      <div class="form-group">
+        <label for="mediaDaInstituicao">Média da instituição</label>
+        <input type="text" class="form-control" id="mediaDaInstituicao" v-model="mediaDaInstituicao" />
       </div>
   
       <div class="form-group">
@@ -42,6 +45,7 @@
         notas: '',
         pesos: '',
         media: '',
+        mediaDaInstituicao: '',
         name: '',
         materia: '',
       }
@@ -77,7 +81,8 @@
       },
   
       isAprovado() {
-        this.media >= 6
+        const mediaDaInstituicao = parseFloat(this.mediaDaInstituicao);
+        this.media >= mediaDaInstituicao
           ? swal('Aprovado', '', 'success')
           : swal('Reprovado', '', 'error')
       },
